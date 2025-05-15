@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/DataAccessLayer/bin/Debug/net9.0
+/DataAccessLayer/obj
+/.vs
+/KE03_INTDEV_SE_1_Base/obj
+/DataAccessLayer/bin/Debug/net8.0
+/KE03_INTDEV_SE_1_Base/bin/Debug/net8.0
+/KE03_INTDEV_SE_1_Base/MatrixInc.db
+/KE03_INTDEV_SE_1_Base/MatrixInc.db-shm
+/KE03_INTDEV_SE_1_Base/MatrixInc.db-wal
