@@ -44,5 +44,20 @@ namespace DataAccessLayer.Repositories
             _context.Products.Update(product);
             _context.SaveChanges();
         }
+
+        private static List<Product> producten = new List<Product>
+    {
+    
+    };
+
+        public static List<Product> GetAll()
+        {
+            return producten; 
+        }
+
+        public static Product? GetById(int id)
+        {
+            return GetAll().FirstOrDefault(p => p.Id == id);
+        }
     }
 }

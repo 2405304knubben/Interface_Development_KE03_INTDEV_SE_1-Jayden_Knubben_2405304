@@ -1,10 +1,12 @@
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KE03_INTDEV_SE_1_Base.Pages
 {
+    [AllowAnonymous]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
@@ -20,8 +22,8 @@ namespace KE03_INTDEV_SE_1_Base.Pages
         }
 
         public void OnGet()
-        {            
-            Customers = _customerRepository.GetAllCustomers().ToList();                            
+        {
+            Customers = _customerRepository.GetAllCustomers().ToList();
             _logger.LogInformation($"getting all {Customers.Count} customers");
         }
     }

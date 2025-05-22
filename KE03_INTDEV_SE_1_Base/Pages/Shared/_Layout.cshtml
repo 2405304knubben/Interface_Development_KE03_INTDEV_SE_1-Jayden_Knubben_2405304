@@ -1,51 +1,60 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - KE03_INTDEV_SE_1_Base</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/KE03_INTDEV_SE_1_Base.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">KE03_INTDEV_SE_1_Base</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+﻿<body>
+  <header>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+          <div class="container-fluid">
+               <a class="navbar-brand d-flex align-items-center" asp-page="/Index">
+                   <i class="fas fa-cubes" style="font-size: 24px; margin-right: 10px;"></i>
+                   <span style="font-weight: bold;">Matrix Incorporated</span>
+               </a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                      aria-expanded="true" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                  <ul class="navbar-nav flex-grow-1">
+                      <li class="nav-item"><a class="nav-link" href="/Create">Voorraad</a></li>
+					<li class="nav-item"><a class="nav-link" href="/Order">                               
+                       <i class="fas fa-shopping-cart fa-2x"></i>
+                       </a></li>
+                       <li class="nav-item"><a class="nav-link" href="/History">Orderhistorie</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/Privacy">Privacy</a></li>
+                  </ul>
+                    <div class="d-flex align-items-center">
+                        <form method="get" action="/logout">
+                            <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center">
+                                <i class="fas fa-sign-out-alt me-2"></i> Uitloggen
+                            </button>
+                        </form>
+                    </div>
+              </div>
+          </div>
+      </nav>     
+  </header>
+  <div class="container">
+      <main role="main" class="pb-3">
+          @RenderBody()
+      </main>
+  </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - KE03_INTDEV_SE_1_Base - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+  <footer class="border-top footer text-muted">
+      <div class="container">
+          &copy; 2025 - Matrix Inc - <a asp-area="" asp-page="/Privacy">Privacy</a>
+      </div>
+  </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+  @await RenderSectionAsync("Scripts", required: false)
+  @if (User?.Identity?.IsAuthenticated == true)
+  {
+      <form method="post" asp-page="/Logout">
+          <button type="submit" class="btn btn-link text-light">Uitloggen (@User.Identity.Name)</button>
+      </form>
+  }
 </body>
-</html>

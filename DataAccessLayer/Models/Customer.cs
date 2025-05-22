@@ -13,11 +13,11 @@ namespace DataAccessLayer.Models
         [Required]
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; } 
 
-        [Required]
-        public string Address { get; set; }
+        public required string Password { get; set; }
+
+        public string Address { get; set; } = string.Empty;
 
         public bool Active { get; set; }
 

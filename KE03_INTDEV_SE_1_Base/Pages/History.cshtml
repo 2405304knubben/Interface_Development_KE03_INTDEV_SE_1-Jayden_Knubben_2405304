@@ -1,0 +1,24 @@
+﻿@page
+@model HistoryModel
+@{
+    ViewData["Title"] = "Mijn bestellingen";
+}
+
+<h1>Mijn bestellingen</h1>
+
+@if (!Model.Orders.Any())
+{
+    <p>Je hebt nog geen bestellingen geplaatst.</p>
+}
+else
+{
+    foreach (var order in Model.Orders)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><strong>Datum:</strong> @order.OrderDate.ToShortDateString()</p>
+                <p><strong>Product:</strong> @order.Name</p>
+            </div>
+        </div>
+    }
+}

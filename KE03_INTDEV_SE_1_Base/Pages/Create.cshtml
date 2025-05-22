@@ -1,0 +1,85 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Voorraad";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h1>Voorraad</h1>
+
+<h3>Producten</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Afbeelding</th>
+            <th>Naam</th>
+			<th>Beschrijving</th>
+            <th>Prijs</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td><img src="@product.ImageUrl" style="height: 80px;" />
+                    <div style="font-size: x-small; color: gray;">Auteur: @product.ImageAuthor</div>
+                </td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>€@product.Price</td>
+                <td>
+                    <form method="post" asp-page-handler="KoopProduct" class="d-flex flex-column align-items-start">
+                        <input type="hidden" name="productId" value="@product.Id" />
+
+                        <label for="aantal-@product.Id" class="form-label mb-1" style="font-size: small;">Aantal</label>
+                        <input type="number" id="aantal-@product.Id" name="aantal" min="1" value="1" class="form-control mb-2" style="width: 80px;" />
+
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="bi bi-cart-plus"></i> Koop
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<<h3>Onderdelen</h3>
+<div>(Alle onderdelen worden alleen in bulk verkocht)</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Afbeelding</th>
+            <th>Naam</th>
+            <th>Beschrijving</th>
+            <th>Prijs</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var part in Model.Parts)
+        {
+            <tr>
+                <td>
+                    <img src="@part.ImageUrl" style="height: 80px;" />
+                    <div style="font-size: x-small; color: gray;">Auteur: @part.ImageAuthor</div>
+                </td>
+                <td>@part.Name</td>
+                <td>@part.Description</td>
+                <td>€@part.Price</td>
+                <td>
+                    <form method="post" asp-page-handler="KoopPart" class="d-flex flex-column align-items-start">
+                        <input type="hidden" name="productId" value="@part.Id" />
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="bi bi-cart-plus"></i> Koop
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

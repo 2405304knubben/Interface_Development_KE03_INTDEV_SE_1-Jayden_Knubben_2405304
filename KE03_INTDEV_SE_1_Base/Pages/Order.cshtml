@@ -1,0 +1,100 @@
+﻿@page
+@model OrderModel
+@{
+    ViewData["Title"] = "Winkelwagen";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h2 class="mb-4">🛒 Mijn Winkelwagen</h2>
+
+@if (Model.Items.Any())
+{
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Product</th>
+                <th>Prijs</th>
+                <th>Aantal</th>
+                <th>Totaal</th>
+				<th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>€@item.Price.</td>
+                    <td>
+                        @if (!item.IsPart)
+                        {
+                            <form method="post" asp-page-handler="UpdateQuantity" class="d-flex justify-content-start align-items-center gap-2">
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <button type="submit" name="action" value="decrease" class="btn btn-outline-secondary btn-sm">−</button>
+                                <span>@item.Quantity</span>
+                                <button type="submit" name="action" value="increase" class="btn btn-outline-secondary btn-sm">+</button>
+                            </form>
+                        }
+                        else
+                        {
+                            @item.Quantity
+                        }
+                    </td>
+                    <td>€@(item.Price * item.Quantity)
+                    </td>
+                    <td>
+                        <form method="post" asp-page-handler="RemoveItem">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit" class="btn btn-danger btn-sm">✕</button>
+                        </form>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+        <tfoot>
+            <tr class="table-success">
+                <td colspan="3" class="text-end"><strong>Totaal</strong></td>
+                <td><strong>€@Model.Items.Sum(i => i.Price * i.Quantity)</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-page="/Create" class="btn btn-outline-primary">
+            ← Verder winkelen
+        </a>
+
+        <a asp-page="/Checkout" class="btn btn-success">
+            Naar afrekenen →
+        </a>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">Je winkelwagen is leeg.</div>
+}
+
+<hr />
+
+<!-- Alternatieve weergave met CartItems (indien beschikbaar) -->
+@if (Model.CartItems != null && Model.CartItems.Any())
+{
+    <h4>Alternatieve weergave (CartItems)</h4>
+    <ul class="list-group mb-4">
+        @foreach (var product in Model.CartItems)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @product.Name
+                <span class="badge bg-primary rounded-pill">€@product.Price</span>
+            </li>
+        }
+    </ul>
+}
+
