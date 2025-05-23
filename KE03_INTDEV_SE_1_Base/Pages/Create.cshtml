@@ -34,11 +34,11 @@
                 <td>@product.Description</td>
                 <td>€@product.Price</td>
                 <td>
-                    <form method="post" asp-page-handler="KoopProduct" class="d-flex flex-column align-items-start">
+                    <form method="post" asp-page-handler="BuyProduct" class="d-flex flex-column align-items-start">
                         <input type="hidden" name="productId" value="@product.Id" />
 
-                        <label for="aantal-@product.Id" class="form-label mb-1" style="font-size: small;">Aantal</label>
-                        <input type="number" id="aantal-@product.Id" name="aantal" min="1" value="1" class="form-control mb-2" style="width: 80px;" />
+                        <label for="amount-@product.Id" class="form-label mb-1" style="font-size: small;">Aantal</label>
+                        <input type="number" id="amount-@product.Id" name="amount" min="1" value="1" class="form-control mb-2" style="width: 80px;" />
 
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="bi bi-cart-plus"></i> Koop
@@ -72,7 +72,7 @@
                 <td>@part.Description</td>
                 <td>€@part.Price</td>
                 <td>
-                    <form method="post" asp-page-handler="KoopPart" class="d-flex flex-column align-items-start">
+                    <form method="post" asp-page-handler="BuyPart" class="d-flex flex-column align-items-start">
                         <input type="hidden" name="productId" value="@part.Id" />
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="bi bi-cart-plus"></i> Koop

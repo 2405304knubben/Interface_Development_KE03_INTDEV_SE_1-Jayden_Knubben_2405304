@@ -39,7 +39,7 @@ public class CreateModel : PageModel
         if (exist != null)
         {
             exist.Quantity += amount;
-            return RedirectToPage();
+            //return RedirectToPage();
             
         }
         else
@@ -66,10 +66,10 @@ public class CreateModel : PageModel
     {
         var shoppingbasket = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
 
-        var bestaand = shoppingbasket.FirstOrDefault(p => p.ProductId == productId && p.IsPart);
-        if (bestaand != null)
+        var exist = shoppingbasket.FirstOrDefault(p => p.ProductId == productId && p.IsPart);
+        if (exist != null)
         {
-            bestaand.Quantity += 1;
+            exist.Quantity += 1;
         }
         else
         {

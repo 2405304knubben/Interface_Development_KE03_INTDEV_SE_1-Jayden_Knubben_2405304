@@ -13,7 +13,7 @@ public class CheckoutModel : PageModel
     {
         Name = string.Empty,
         Surname = string.Empty,
-        Adress = string.Empty,
+        Address = string.Empty,
         Location = string.Empty,
         Email = string.Empty,
         Phonenumber = string.Empty,
@@ -37,11 +37,11 @@ public class CheckoutModel : PageModel
         }
 
         // Nieuwe bestelling aanmaken
-        var bestelling = new OrderHistoryEntry
+        var order = new OrderHistoryEntry
         {
             Name = Form.Name,
             Surname = Form.Surname,
-            Adress = Form.Adress,
+            Address = Form.Address,
             Location = Form.Location,
             Email = Form.Email,
             Phonenumber = Form.Phonenumber,
@@ -57,9 +57,9 @@ public class CheckoutModel : PageModel
         };
 
         // Geschiedenis ophalen, aanvullen, en opslaan
-        var geschiedenis = Request.Cookies.GetObjectFromJson<List<OrderHistoryEntry>>("BestelGeschiedenis") ?? new();
-        geschiedenis.Add(bestelling);
-        Response.Cookies.SetObjectAsJson("BestelGeschiedenis", geschiedenis);
+        var history = Request.Cookies.GetObjectFromJson<List<OrderHistoryEntry>>("BestelGeschiedenis") ?? new();
+        history.Add(order);
+        Response.Cookies.SetObjectAsJson("BestelGeschiedenis", history);
 
         // Winkelwagen legen
         Response.Cookies.Delete("Winkelwagen");
@@ -79,7 +79,7 @@ public class CheckoutModel : PageModel
         public required string Surname { get; set; }
 
         [Required]
-        public required string Adress { get; set; }
+        public required string Address { get; set; }
 
         [Required]
         public required string Location { get; set; }
