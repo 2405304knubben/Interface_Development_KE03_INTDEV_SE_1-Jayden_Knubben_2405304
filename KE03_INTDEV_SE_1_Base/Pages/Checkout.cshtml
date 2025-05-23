@@ -4,31 +4,31 @@
     ViewData["Title"] = "Bestellen";
 }
 
-<h2 class="mb-4">🧾 Bestelformulier</h2>
+<h2 class="mb-4">Bestelformulier</h2>
 
 <form method="post">
     <div class="mb-3">
-        <label asp-for="Form.Naam" class="form-label">Voornaam</label>
-        <input asp-for="Form.Naam" class="form-control" />
-        <span asp-validation-for="Form.Naam" class="text-danger"></span>
+        <label asp-for="Form.Name" class="form-label">Voornaam</label>
+        <input asp-for="Form.Name" class="form-control" />
+        <span asp-validation-for="Form.Name" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Form.Achternaam" class="form-label">Achternaam</label>
-        <input asp-for="Form.Achternaam" class="form-control" />
-        <span asp-validation-for="Form.Achternaam" class="text-danger"></span>
+        <label asp-for="Form.Surname" class="form-label">Achternaam</label>
+        <input asp-for="Form.Surname" class="form-control" />
+        <span asp-validation-for="Form.Surname" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Form.Adres" class="form-label">Adres</label>
-        <input asp-for="Form.Adres" class="form-control" />
-        <span asp-validation-for="Form.Adres" class="text-danger"></span>
+        <label asp-for="Form.Adress" class="form-label">Adres</label>
+        <input asp-for="Form.Adress" class="form-control" />
+        <span asp-validation-for="Form.Adress" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Form.Woonplaats" class="form-label">Woonplaats</label>
-        <input asp-for="Form.Woonplaats" class="form-control" />
-        <span asp-validation-for="Form.Woonplaats" class="text-danger"></span>
+        <label asp-for="Form.Location" class="form-label">Woonplaats</label>
+        <input asp-for="Form.Location" class="form-control" />
+        <span asp-validation-for="Form.Location" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
@@ -38,14 +38,14 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Form.Telefoonnummer" class="form-label">Telefoonnummer</label>
-        <input asp-for="Form.Telefoonnummer" class="form-control" />
-        <span asp-validation-for="Form.Telefoonnummer" class="text-danger"></span>
+        <label asp-for="Form.Phonenumber" class="form-label">Telefoonnummer</label>
+        <input asp-for="Form.Phonenumber" class="form-control" />
+        <span asp-validation-for="Form.Phonenumber" class="text-danger"></span>
     </div>
 
     <div class="mb-4">
-        <label asp-for="Form.Betaalmethode" class="form-label">Betaalmethode</label>
-        <select asp-for="Form.Betaalmethode" class="form-select">
+        <label asp-for="Form.Paying_Method" class="form-label">Betaalmethode</label>
+        <select asp-for="Form.Paying_Method" class="form-select">
             <option value="">-- Kies uw bank --</option>
             <option>ABN AMRO</option>
             <option>Rabobank</option>
@@ -53,7 +53,7 @@
             <option>ASN Bank</option>
             <option>RegioBank</option>
         </select>
-        <span asp-validation-for="Form.Betaalmethode" class="text-danger"></span>
+        <span asp-validation-for="Form.Paying_Method" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Bestelling afronden</button>

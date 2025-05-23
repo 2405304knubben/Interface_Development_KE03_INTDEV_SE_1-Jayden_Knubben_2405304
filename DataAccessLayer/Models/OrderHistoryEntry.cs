@@ -3,14 +3,14 @@ using DataAccessLayer.Models;
 
 public class OrderHistoryEntry
 {
-    public required string Voornaam { get; set; }
-    public required string Achternaam { get; set; }
-    public required string Adres { get; set; }
-    public required string Woonplaats { get; set; }
+    public required string Name { get; set; }
+    public required string Surname { get; set; }
+    public required string Adress { get; set; }
+    public required string Location { get; set; }
     public required string Email { get; set; }
-    public required string Telefoon { get; set; }
-    public required string Betaalmethode { get; set; }
+    public required string Phonenumber { get; set; }
+    public required string Paying_Method { get; set; }
 
-    public List<Shoppingcart> BesteldeItems { get; set; } = new();
-    public DateTime Tijdstip { get; set; } = DateTime.Now;
+    public List<Shoppingcart> OrderedItems { get; set; } = new();
+    public DateTime Time { get; set; } = DateTime.Now;
 }

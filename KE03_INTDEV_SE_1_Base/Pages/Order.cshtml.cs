@@ -23,9 +23,9 @@ public class OrderModel : PageModel
 
     public IActionResult OnPostUpdateQuantity(int productId, string action)
     {
-        var winkelmand = GetCartItemsFromCookie();
+        var shoppingbasket = GetCartItemsFromCookie();
 
-        var item = winkelmand.FirstOrDefault(p => p.ProductId == productId);
+        var item = shoppingbasket.FirstOrDefault(p => p.ProductId == productId);
         if (item != null)
         {
             if (action == "increase")
@@ -37,7 +37,7 @@ public class OrderModel : PageModel
                 item.Quantity--;
             }
 
-            SaveCartItemsToCookie(winkelmand);
+            SaveCartItemsToCookie(shoppingbasket);
         }
 
         return RedirectToPage();
@@ -58,7 +58,6 @@ public class OrderModel : PageModel
         return RedirectToPage();
     }
 
-    // Helper methods
     private List<Shoppingcart> GetCartItemsFromCookie()
     {
         var cookie = Request.Cookies["Winkelwagen"];
@@ -73,7 +72,7 @@ public class OrderModel : PageModel
         {
             Expires = DateTimeOffset.Now.AddDays(7),
             HttpOnly = true,
-            Secure = true, // alleen via HTTPS
+            Secure = true, 
             IsEssential = true
         };
 

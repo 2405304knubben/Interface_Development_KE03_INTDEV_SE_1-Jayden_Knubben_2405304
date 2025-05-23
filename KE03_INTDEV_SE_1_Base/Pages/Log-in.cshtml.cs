@@ -16,7 +16,7 @@ public class LoginModel : PageModel
         _context = context;
         Name = string.Empty;
         Password = string.Empty;
-        Foutmelding = string.Empty;
+        Errormessage = string.Empty;
     }
 
     [BindProperty]
@@ -25,7 +25,7 @@ public class LoginModel : PageModel
     [BindProperty]
     public string Password { get; set; }
 
-    public string Foutmelding { get; set; }
+    public string Errormessage { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -34,8 +34,8 @@ public class LoginModel : PageModel
 
         if (Customer == null)
         {
-            Foutmelding = "Ongeldige inloggegevens";
-            return Page(); // blijf op de inlogpagina    
+            Errormessage = "Ongeldige inloggegevens";
+            return Page();
         }
 
         var claims = new List<Claim>
@@ -47,8 +47,6 @@ public class LoginModel : PageModel
         var principal = new ClaimsPrincipal(identity);
 
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-        //TempData["username"] = Name;
 
         if (string.IsNullOrEmpty(TempData["username"] as string))
         {

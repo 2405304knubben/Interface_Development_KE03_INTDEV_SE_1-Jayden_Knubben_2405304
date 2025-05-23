@@ -16,8 +16,8 @@
     </div>
     <button type="submit" class="btn btn-primary mt-2">Inloggen</button>
 
-    @if (!string.IsNullOrEmpty(Model.Foutmelding))
+    @if (!string.IsNullOrEmpty(Model.Errormessage))
     {
-    <div class="text-danger mt-2">@Model.Foutmelding</div>
+    <div class="text-danger mt-2">@Model.Errormessage</div>
     }
 </form>

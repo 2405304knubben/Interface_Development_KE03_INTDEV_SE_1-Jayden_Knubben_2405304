@@ -6,7 +6,7 @@ namespace DataAccessLayer.Models
     {
         public int Id { get; set; }
         public required string Name { get; set; }
-        public required string Password { get; set; } // Voor demo, géén hash (in productie altijd hashen!)
+        public required string Password { get; set; } 
     }
 }
 

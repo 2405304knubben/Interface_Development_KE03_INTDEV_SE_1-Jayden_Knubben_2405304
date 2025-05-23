@@ -28,14 +28,14 @@ namespace KE03_INTDEV_SE_1_Base
             builder.Services.AddScoped<UserManager<IdentityUser>>();
             builder.Services.AddScoped<SignInManager<IdentityUser>>();
 
-            // Configureer authenticatie via Identity
+            
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Log-in";
                 options.AccessDeniedPath = "/AccessDenied";
             });
 
-            // Voeg sessie toe (optioneel voor niet-auth doeleinden)
+            
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -46,7 +46,7 @@ namespace KE03_INTDEV_SE_1_Base
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.LoginPath = "/Log-in"; // of je eigen loginpagina
+                    options.LoginPath = "/Log-in"; 
                     options.AccessDeniedPath = "/AccessDenied";
                 });
 
@@ -63,7 +63,6 @@ namespace KE03_INTDEV_SE_1_Base
 
             var app = builder.Build();
 
-            // Middleware volgorde is belangrijk!
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
@@ -76,24 +75,21 @@ namespace KE03_INTDEV_SE_1_Base
             app.UseRouting();
             app.UseSession();
 
-            app.UseAuthentication(); // Identity
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseSession(); // Sessie, indien nodig
+            app.UseSession(); 
 
             app.MapRazorPages();
 
-            // Optioneel: redirect root naar login
             app.MapGet("/", context =>
             {
                 if (context.Request.Cookies.TryGetValue("auth_cookie", out var authValue) && authValue == "true")
                 {
-                    // Gebruiker is ingelogd, doorsturen naar homepagina of iets anders
                     context.Response.Redirect("/Index");
                 }
                 else
                 {
-                    // Niet ingelogd, stuur door naar inlogpagina
                     context.Response.Redirect("/Log-in");
                 }
                 context.Response.Cookies.Append("auth_cookie", "true", new CookieOptions
@@ -103,12 +99,13 @@ namespace KE03_INTDEV_SE_1_Base
                 });
                 return Task.CompletedTask;
             });
+
             app.MapGet("/logout", async (HttpContext context) =>
             {
                 await Task.Run(() =>
                 {
-                    context.Response.Cookies.Delete("loginCookieNaam"); // vervang met je echte cookienaam
-                    context.Response.Redirect("/Log-in"); // of de pagina waar je naartoe wilt na uitloggen
+                    context.Response.Cookies.Delete("loginCookieNaam"); 
+                    context.Response.Redirect("/Log-in"); 
                 });
             });
 

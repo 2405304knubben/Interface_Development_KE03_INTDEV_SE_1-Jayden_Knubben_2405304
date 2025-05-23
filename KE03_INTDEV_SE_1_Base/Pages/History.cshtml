@@ -6,24 +6,24 @@
 
 <h2>📜 Bestelgeschiedenis</h2>
 
-@if (!Model.Bestellingen.Any())
+@if (!Model.Orders.Any())
 {
     <div class="alert alert-info">Er zijn nog geen bestellingen geplaatst.</div>
 }
 else
 {
-    foreach (var bestelling in Model.Bestellingen.OrderByDescending(b => b.Tijdstip))
+    foreach (var bestelling in Model.Orders.OrderByDescending(b => b.Time))
     {
         <div class="card mb-4">
             <div class="card-header">
-                <strong>@bestelling.Voornaam @bestelling.Achternaam</strong> – @bestelling.Tijdstip.ToString("g")
+                <strong>@bestelling.Name @bestelling.Surname</strong> – @bestelling.Time.ToString("g")
             </div>
             <div class="card-body">
                 <p>
-                    <strong>Adres:</strong> @bestelling.Adres, @bestelling.Woonplaats<br />
+                    <strong>Adres:</strong> @bestelling.Adress, @bestelling.Location<br />
                     <strong>Email:</strong> @bestelling.Email<br />
-                    <strong>Telefoon:</strong> @bestelling.Telefoon<br />
-                    <strong>Betaalmethode:</strong> @bestelling.Betaalmethode
+                    <strong>Telefoon:</strong> @bestelling.Phonenumber<br />
+                    <strong>Betaalmethode:</strong> @bestelling.Paying_Method
                 </p>
 
                 <h5>🛒 Bestelde producten</h5>
@@ -37,7 +37,7 @@ else
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in bestelling.BesteldeItems)
+                        @foreach (var item in bestelling.OrderedItems)
                         {
                             <tr>
                                 <td>@item.Name</td>
@@ -52,7 +52,7 @@ else
                             <td colspan="3" class="text-end"><strong>Totaal</strong></td>
                             <td>
                                 <strong>
-                                    €@bestelling.BesteldeItems.Sum(i => i.Quantity * i.Price)
+                                    €@bestelling.OrderedItems.Sum(i => i.Quantity * i.Price)
                                 </strong>
                             </td>
                         </tr>

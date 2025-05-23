@@ -29,46 +29,44 @@ public class CreateModel : PageModel
         Parts = _context.Parts.ToList();
     }
 
-    public IActionResult OnPostKoopProduct(int productId, int aantal)
+    public IActionResult OnPostBuyProduct(int productId, int amount)
     {
-        TempData["DebugMessage"] = $"Ontvangen productId: {productId}, aantal: {aantal}";
+        TempData["DebugMessage"] = $"Ontvangen productId: {productId}, aantal: {amount}";
 
-        var winkelmand = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
+        var shoppingbasket = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
 
-        var bestaand = winkelmand.FirstOrDefault(p => p.ProductId == productId);
-        if (bestaand != null)
+        var exist = shoppingbasket.FirstOrDefault(p => p.ProductId == productId);
+        if (exist != null)
         {
-            bestaand.Quantity += aantal;
-            //TempData["ErrorMessage"] = $"Product niet gevonden voor ID: {productId}";
+            exist.Quantity += amount;
             return RedirectToPage();
             
         }
         else
         {
-            // Voeg nieuw item toe. Zorg dat Shoppingcart alles bevat (zoals Name & Price)
-            var product = _context.Products.Find(productId); // of hoe je je product ophaalt
+            var product = _context.Products.Find(productId); 
             if (product != null)
             {
-                winkelmand.Add(new Shoppingcart
+                shoppingbasket.Add(new Shoppingcart
                 {
                     ProductId = product.Id,
                     Name = product.Name,
                     Price = product.Price,
-                    Quantity = aantal
+                    Quantity = amount
                 });
             }
         }
 
-        Response.Cookies.SetObjectAsJson("Winkelwagen", winkelmand);
+        Response.Cookies.SetObjectAsJson("Winkelwagen", shoppingbasket);
         TempData["SuccessMessage"] = "Product succesvol toegevoegd aan de winkelmand!";
         return RedirectToPage();
     }
 
-    public IActionResult OnPostKoopPart(int productId)
+    public IActionResult OnPostBuyPart(int productId)
     {
-        var winkelmand = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
+        var shoppingbasket = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
 
-        var bestaand = winkelmand.FirstOrDefault(p => p.ProductId == productId && p.IsPart);
+        var bestaand = shoppingbasket.FirstOrDefault(p => p.ProductId == productId && p.IsPart);
         if (bestaand != null)
         {
             bestaand.Quantity += 1;
@@ -78,7 +76,7 @@ public class CreateModel : PageModel
             var part = _context.Parts.Find(productId);
             if (part != null)
             {
-                winkelmand.Add(new Shoppingcart
+                shoppingbasket.Add(new Shoppingcart
                 {
                     ProductId = part.Id,
                     Name = part.Name,
@@ -89,7 +87,7 @@ public class CreateModel : PageModel
             }
         }
 
-        Response.Cookies.SetObjectAsJson("Winkelwagen", winkelmand);
+        Response.Cookies.SetObjectAsJson("Winkelwagen", shoppingbasket);
         TempData["SuccessMessage"] = "Onderdeel succesvol toegevoegd aan winkelmand!";
         return RedirectToPage();
     }

@@ -11,18 +11,19 @@
     </div>
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Klant</th>
-            <th>Aantal Orders</th>
-        </tr>
-    </thead>
-    @foreach (var c in Model.Customers)
-    {        
-        <tr>
-            <td>@Html.DisplayName(c.Name)</td>
-            <td>@Html.DisplayName(c.Orders.Count.ToString())</td>           
-        </tr>
-    }
-</table>
+<div style="text-align: center; padding: 50px;">
+    <h1 style="font-size: 3em;">Welkom bij onze digitale realiteit</h1>
+    <p style="font-size: 1.5em; margin-top: 20px;">
+        Je had kunnen kiezen voor de blauwe knop… maar jij klikte door.
+        <br /><br />
+        Nu ben je hier, in onze wereld van data, code en cookies.
+    </p>
+    <p style="font-size: 1.2em; margin-top: 40px;">
+        <em>“There is no spoon”</em> – maar er zijn wel klanten, bestellingen, en natuurlijk: <strong>jij</strong>.
+    </p>
+    <p style="font-size: 1.2em; margin-top: 30px;">
+        Dus relax, laat de <span style="color: lime;">bits en bytes</span> binnenstromen…
+        <br />
+        want dit is geen bug – dit is de Matrix van jouw keuzes.
+    </p>
+</div>

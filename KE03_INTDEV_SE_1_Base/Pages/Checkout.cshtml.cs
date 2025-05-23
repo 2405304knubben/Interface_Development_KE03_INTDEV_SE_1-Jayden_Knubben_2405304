@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using DataAccessLayer.Models; // Voor Shoppingcart
+using DataAccessLayer.Models; 
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -11,13 +11,13 @@ public class CheckoutModel : PageModel
     [BindProperty]
     public Bestelformulier Form { get; set; } = new()
     {
-        Naam = string.Empty,
-        Achternaam = string.Empty,
-        Adres = string.Empty,
-        Woonplaats = string.Empty,
+        Name = string.Empty,
+        Surname = string.Empty,
+        Adress = string.Empty,
+        Location = string.Empty,
         Email = string.Empty,
-        Telefoonnummer = string.Empty,
-        Betaalmethode = string.Empty
+        Phonenumber = string.Empty,
+        Paying_Method = string.Empty
     };
 
     public IActionResult OnPost()
@@ -28,9 +28,9 @@ public class CheckoutModel : PageModel
         }
 
         // Winkelwagen ophalen
-        var winkelwagen = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
+        var shoppingcart = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
 
-        if (!winkelwagen.Any())
+        if (!shoppingcart.Any())
         {
             TempData["SuccessMessage"] = "Geen producten in de winkelwagen.";
             return RedirectToPage("/Index");
@@ -39,21 +39,21 @@ public class CheckoutModel : PageModel
         // Nieuwe bestelling aanmaken
         var bestelling = new OrderHistoryEntry
         {
-            Voornaam = Form.Naam,
-            Achternaam = Form.Achternaam,
-            Adres = Form.Adres,
-            Woonplaats = Form.Woonplaats,
+            Name = Form.Name,
+            Surname = Form.Surname,
+            Adress = Form.Adress,
+            Location = Form.Location,
             Email = Form.Email,
-            Telefoon = Form.Telefoonnummer,
-            Betaalmethode = Form.Betaalmethode,
-            BesteldeItems = winkelwagen.Select(p => new Shoppingcart
+            Phonenumber = Form.Phonenumber,
+            Paying_Method = Form.Paying_Method,
+            OrderedItems = shoppingcart.Select(p => new Shoppingcart
             {
                 ProductId = p.ProductId,
                 Name = p.Name,
                 Price = p.Price,
                 Quantity = p.Quantity
             }).ToList(),
-            Tijdstip = DateTime.Now
+            Time = DateTime.Now
         };
 
         // Geschiedenis ophalen, aanvullen, en opslaan
@@ -65,7 +65,7 @@ public class CheckoutModel : PageModel
         Response.Cookies.Delete("Winkelwagen");
 
         // Succesmelding tonen op de Index pagina
-        TempData["SuccessMessage"] = $"Bestelling succesvol geplaatst! <a href='/History'>Bekijk bestelgeschiedenis</a>.";
+        TempData["SuccessMessage"] = $"Bestelling succesvol geplaatst!";
 
         return RedirectToPage("/Index");
     }
@@ -73,25 +73,25 @@ public class CheckoutModel : PageModel
     public class Bestelformulier
     {
         [Required]
-        public required string Naam { get; set; }
+        public required string Name { get; set; }
 
         [Required]
-        public required string Achternaam { get; set; }
+        public required string Surname { get; set; }
 
         [Required]
-        public required string Adres { get; set; }
+        public required string Adress { get; set; }
 
         [Required]
-        public required string Woonplaats { get; set; }
+        public required string Location { get; set; }
 
         [Required, EmailAddress]
         public required string Email { get; set; }
 
         [Required]
         [Phone]
-        public required string Telefoonnummer { get; set; }
+        public required string Phonenumber { get; set; }
 
         [Required]
-        public required string Betaalmethode { get; set; }
+        public required string Paying_Method { get; set; }
     }
 }
