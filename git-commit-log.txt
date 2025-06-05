@@ -1,0 +1,58 @@
+commit e6d94299d987f9afadcdc6a7db002e5e224f39a2
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Fri May 23 14:54:41 2025 +0200
+
+    push #4 (review
+    
+    - laatste aanpassingen gemaakt
+
+commit 9708f317404587eae0719fcce4594cd173a53221
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Fri May 23 13:51:27 2025 +0200
+
+    push #3 (review)
+    
+    compleet:
+    - alle eerdergenoemde taken
+    - finetuning
+
+commit dfeb83b143f812b5a2ce68d3b15fc03db9a957cb
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Thu May 22 15:03:00 2025 +0200
+
+    push #2
+    
+    compleet:
+    - bestelpagina
+    - orderhistorie
+    
+    nog mee bezig:
+    - finetunen
+
+commit 1ef19646dfae43bf8c5e58c772325ff8aad6df42
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Thu May 22 14:21:01 2025 +0200
+
+    push #1 - 22-05-2025
+    
+    compleet:
+    - inlogpagina
+    - voorraadpagina
+    - winkelwagenpagina
+    - alle functies tussen deze pagina's
+    
+    nog mee bezig:
+    - bestelpagina
+    - orderhistorie
+
+commit 3f7ea9cb6881b2de99d94f0d93dbd92bfe8cc936
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Thu May 15 12:11:28 2025 +0200
+
+    Add project files.
+
+commit fd6e97a7acaef3895fe6054a45ef4e2bdafc38f9
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Thu May 15 12:11:25 2025 +0200
+
+    Add .gitattributes.

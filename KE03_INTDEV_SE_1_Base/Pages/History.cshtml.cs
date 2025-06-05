@@ -8,6 +8,6 @@ public class HistoryModel : PageModel
 
     public void OnGet()
     {
-        Orders = Request.Cookies.GetObjectFromJson<List<OrderHistoryEntry>>("BestelGeschiedenis") ?? new();  
+        Orders = Request.Cookies.GetObjectFromJson<List<OrderHistoryEntry>>("Orderhistorie") ?? new();  
     }
 }
