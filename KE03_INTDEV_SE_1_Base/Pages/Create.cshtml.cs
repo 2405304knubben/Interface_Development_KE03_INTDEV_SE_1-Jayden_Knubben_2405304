@@ -50,7 +50,7 @@ public class CreateModel : PageModel
                 shoppingbasket.Add(new Shoppingcart
                 {
                     ProductId = product.Id,
-                    Name = product.Name,
+                    ProductName = product.Name,
                     Price = product.Price,
                     Quantity = amount
                 });
@@ -79,7 +79,7 @@ public class CreateModel : PageModel
                 shoppingbasket.Add(new Shoppingcart
                 {
                     ProductId = part.Id,
-                    Name = part.Name,
+                    ProductName = part.Name,
                     Price = part.Price,
                     Quantity = 1,
                     IsPart = true

@@ -2,12 +2,20 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using DataAccessLayer.Models; 
+using DataAccessLayer;
 using System.Collections.Generic;
 using System.Linq;
 using System;
 
 public class CheckoutModel : PageModel
 {
+    private readonly MatrixIncDbContext _context;
+
+    public CheckoutModel(MatrixIncDbContext context)
+    {
+        _context = context;
+    }
+
     [BindProperty]
     public Bestelformulier Form { get; set; } = new()
     {
@@ -23,11 +31,9 @@ public class CheckoutModel : PageModel
     public IActionResult OnPost()
     {
         if (!ModelState.IsValid)
-        {
             return Page();
-        }
 
-        // Winkelwagen ophalen
+        // Winkelwagen ophalen uit cookies
         var shoppingcart = Request.Cookies.GetObjectFromJson<List<Shoppingcart>>("Winkelwagen") ?? new();
 
         if (!shoppingcart.Any())
@@ -36,62 +42,42 @@ public class CheckoutModel : PageModel
             return RedirectToPage("/Index");
         }
 
-        // Nieuwe bestelling aanmaken
-        var order = new OrderHistoryEntry
+        // Order aanmaken
+        var order = new Order
         {
             Name = Form.Name,
             Surname = Form.Surname,
-            Address = Form.Address,
+            Adress = Form.Address,
             Location = Form.Location,
             Email = Form.Email,
             Phonenumber = Form.Phonenumber,
             Paying_Method = Form.Paying_Method,
-            OrderedItems = shoppingcart.Select(p => new Shoppingcart
+            OrderDate = DateTime.Now,
+            OrderRegels = shoppingcart.Select(p => new OrderRegel
             {
                 ProductId = p.ProductId,
-                Name = p.Name,
+                Quantity= p.Quantity,
                 Price = p.Price,
-                Quantity = p.Quantity
-            }).ToList(),
-            Time = DateTime.Now
+                ProductName = p.ProductName,
+            }).ToList()
         };
 
-        // Geschiedenis ophalen, aanvullen, en opslaan
-        var history = Request.Cookies.GetObjectFromJson<List<OrderHistoryEntry>>("BestelGeschiedenis") ?? new();
-        history.Add(order);
-        Response.Cookies.SetObjectAsJson("BestelGeschiedenis", history);
+        _context.Orders.Add(order);
+        _context.SaveChanges(); // Slaat bestelling + orderregels op in DB
 
-        // Winkelwagen legen
         Response.Cookies.Delete("Winkelwagen");
-
-        // Succesmelding tonen op de Index pagina
-        TempData["SuccessMessage"] = $"Bestelling succesvol geplaatst!";
-
+        TempData["SuccessMessage"] = "Bestelling succesvol geplaatst!";
         return RedirectToPage("/Index");
     }
 
     public class Bestelformulier
     {
-        [Required]
-        public required string Name { get; set; }
-
-        [Required]
-        public required string Surname { get; set; }
-
-        [Required]
-        public required string Address { get; set; }
-
-        [Required]
-        public required string Location { get; set; }
-
-        [Required, EmailAddress]
-        public required string Email { get; set; }
-
-        [Required]
-        [Phone]
-        public required string Phonenumber { get; set; }
-
-        [Required]
-        public required string Paying_Method { get; set; }
+        [Required] public required string Name { get; set; }
+        [Required] public required string Surname { get; set; }
+        [Required] public required string Address { get; set; }
+        [Required] public required string Location { get; set; }
+        [Required, EmailAddress] public required string Email { get; set; }
+        [Required, Phone] public required string Phonenumber { get; set; }
+        [Required] public required string Paying_Method { get; set; }
     }
 }

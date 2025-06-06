@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace DataAccessLayer.Models
 {
@@ -14,10 +16,16 @@ namespace DataAccessLayer.Models
         [Key]
         public int Id { get; set; }
 
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
         public int CustomerId { get; set; }
         public required string Name { get; set; }
+        public required string Surname { get; set; }
+        public required string Adress { get; set; }
+        public required string Location { get; set; }
+        public required string Email { get; set; }
+        public required string Phonenumber { get; set; }
+        public required string Paying_Method { get; set; }
 
         public Customer Customer { get; set; } = null!;
 

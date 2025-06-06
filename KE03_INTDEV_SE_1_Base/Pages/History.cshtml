@@ -12,18 +12,18 @@
 }
 else
 {
-    foreach (var bestelling in Model.Orders.OrderByDescending(b => b.Time))
+    foreach (var order in Model.Orders.OrderByDescending(b => b.OrderDate))
     {
         <div class="card mb-4">
             <div class="card-header">
-                <strong>@bestelling.Name @bestelling.Surname</strong> – @bestelling.Time.ToString("g")
+                <strong>@order.Name @order.Surname</strong> – @order.OrderDate.ToString("g")
             </div>
             <div class="card-body">
                 <p>
-                    <strong>Adres:</strong> @bestelling.Address, @bestelling.Location<br />
-                    <strong>Email:</strong> @bestelling.Email<br />
-                    <strong>Telefoon:</strong> @bestelling.Phonenumber<br />
-                    <strong>Betaalmethode:</strong> @bestelling.Paying_Method
+                    <strong>Adres:</strong> @order.Adress, @order.Location<br />
+                    <strong>Email:</strong> @order.Email<br />
+                    <strong>Telefoon:</strong> @order.Phonenumber<br />
+                    <strong>Betaalmethode:</strong> @order.Paying_Method
                 </p>
 
                 <h5>🛒 Bestelde producten</h5>
@@ -37,13 +37,13 @@ else
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in bestelling.OrderedItems)
+                        @foreach (var regel in order.OrderRegels)
                         {
                             <tr>
-                                <td>@item.Name</td>
-                                <td>@item.Quantity</td>
-                                <td>€@item.Price.</td>
-                                <td>€@(item.Quantity * item.Price)</td>
+                                <td>@regel.ProductName</td>
+                                <td>@regel.Quantity</td>
+                                <td>€@regel.Price</td>
+                                <td>€@(regel.Quantity * regel.Price)</td>
                             </tr>
                         }
                     </tbody>
@@ -52,7 +52,7 @@ else
                             <td colspan="3" class="text-end"><strong>Totaal</strong></td>
                             <td>
                                 <strong>
-                                    €@bestelling.OrderedItems.Sum(i => i.Quantity * i.Price)
+                                    €@order.OrderRegels.Sum(i => i.Quantity * i.Price)
                                 </strong>
                             </td>
                         </tr>

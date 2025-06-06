@@ -34,10 +34,7 @@ namespace DataAccessLayer
             // Seed orders  
             var orders = new Order[]
             {
-                   new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-01-01"), Name = "Order 1" },
-                   new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-02-01"), Name = "Order 2" },
-                   new Order { Customer = customers[1], OrderDate = DateTime.Parse("2021-02-01"), Name = "Order 3" },
-                   new Order { Customer = customers[2], OrderDate = DateTime.Parse("2021-03-01"), Name = "Order 4" }
+                   new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-01-01"), Name = "Neo", Surname = "Matrix", Adress= "Maandagstraat 1", Location = "Heerlen", Email = "neothegod@gmail.com", Phonenumber = "06583940163", Paying_Method = "ABN Amro"  },
             };
             context.Orders.AddRange(orders);
 
