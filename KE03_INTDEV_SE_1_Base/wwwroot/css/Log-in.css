@@ -1,0 +1,50 @@
+﻿.login-background {
+	min-height: 100vh; /* minstens hele schermhoogte */
+	width: 100vw; /* volledige schermbreedte */
+	background: linear-gradient(135deg, #39FF14, #000000);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.login-box {
+	background-color: rgba(0, 0, 0, 0.85); /* zwart met iets transparantie */
+	padding: 2rem 3rem;
+	border-radius: 12px;
+	box-shadow: 0 0 15px #39FF14; /* subtiele neon glow */
+	width: 350px;
+	color: #39FF14; /* neon groene tekst */
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+	
+.login-box label {
+	color: #39FF14;
+}
+
+.login-box input {
+	background-color: #111;
+	border: 1px solid #39FF14;
+	color: #39FF14;
+}
+
+
+.login-box button {
+	background-color: #39FF14;
+	color: black;
+	border: none;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+	background-color: #2ecc40; /* iets lichter groen bij hover */
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: none; /* of achtergrond verwijderen zodat je eigen achtergrond zichtbaar is */
+}

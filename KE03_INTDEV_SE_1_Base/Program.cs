@@ -134,9 +134,9 @@ namespace KE03_INTDEV_SE_1_Base
                     if (!db.Products.Any())
                     {
                         db.Products.AddRange(
-                            new Product { Name = "Laptop", Price = 999.99M, Description = "High-performance laptop", ImageUrl = "", ImageAuthor = "" },
-                            new Product { Name = "Muis", Price = 25.50M, Description = "Ergonomic mouse", ImageUrl = "", ImageAuthor = "" },
-                            new Product { Name = "Toetsenbord", Price = 45.00M, Description = "Mechanical keyboard", ImageUrl = "", ImageAuthor = "" }
+                            new Product { Name = "Laptop", Price = 999.99M, Description = "High-performance laptop", ImageSRC = "", ImageAuthor = "" },
+                            new Product { Name = "Muis", Price = 25.50M, Description = "Ergonomic mouse", ImageSRC = "", ImageAuthor = "" },
+                            new Product { Name = "Toetsenbord", Price = 45.00M, Description = "Mechanical keyboard", ImageSRC = "", ImageAuthor = "" }
                         );
                         db.SaveChanges();
                     }
@@ -144,9 +144,9 @@ namespace KE03_INTDEV_SE_1_Base
                 if (!db.Products.Any())
                 {
                     db.Products.AddRange(
-                        new Product { Name = "Laptop", Price = 999.99M, Description = "High-performance laptop", ImageUrl = "", ImageAuthor = "" },
-                        new Product { Name = "Muis", Price = 25.50M, Description = "Ergonomic mouse", ImageUrl = "", ImageAuthor = "" },
-                        new Product { Name = "Toetsenbord", Price = 45.00M, Description = "Mechanical keyboard", ImageUrl = "", ImageAuthor = "" }
+                        new Product { Name = "Laptop", Price = 999.99M, Description = "High-performance laptop", ImageSRC = "", ImageAuthor = "" },
+                        new Product { Name = "Muis", Price = 25.50M, Description = "Ergonomic mouse", ImageSRC = "", ImageAuthor = "" },
+                        new Product { Name = "Toetsenbord", Price = 45.00M, Description = "Mechanical keyboard", ImageSRC = "", ImageAuthor = "" }
                     );
                     db.SaveChanges();
                 }

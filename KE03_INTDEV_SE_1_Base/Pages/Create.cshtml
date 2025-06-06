@@ -27,7 +27,7 @@
         @foreach (var product in Model.Products)
         {
             <tr>
-                <td><img src="@product.ImageUrl" style="height: 80px;" />
+                <td><img src="@product.ImageSRC" style="height: 80px;" />
                     <div style="font-size: x-small; color: gray;">Auteur: @product.ImageAuthor</div>
                 </td>
                 <td>@product.Name</td>
@@ -65,7 +65,7 @@
         {
             <tr>
                 <td>
-                    <img src="@part.ImageUrl" style="height: 80px;" />
+                    <img src="@part.ImageSRC" style="height: 80px;" />
                     <div style="font-size: x-small; color: gray;">Auteur: @part.ImageAuthor</div>
                 </td>
                 <td>@part.Name</td>
