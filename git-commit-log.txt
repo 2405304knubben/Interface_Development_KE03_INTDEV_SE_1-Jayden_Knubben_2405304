@@ -1,3 +1,19 @@
+commit 6880a0631c5bf78eef877245003b2f818b76dc50
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Fri Jun 6 20:40:50 2025 +0200
+
+    Standardize image property & redesign login page
+    
+    Updated `ImageUrl` to `ImageSRC` across models, views, and database seeding logic for consistent naming. Enhanced login page with a new `_LoginLayout`, Bootstrap styling, and custom CSS (`Log-in.css`) for improved aesthetics and responsiveness. Added null layout initialization in `_ViewStart.cshtml` for proper layout handling.
+
+commit 0f2a0e224d53a3d8b9340cf942ec228d9edc9a97
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Fri Jun 6 17:41:31 2025 +0200
+
+    Refactor order system and database integration
+    
+    Updated seeding logic in `MatrixIncDbInitializer.cs` to include extended `Order` properties. Enhanced `Order`, `OrderRegel`, and `Shoppingcart` models with new fields and renamed properties for clarity and consistency. Refactored `Checkout.cshtml.cs` and `History.cshtml.cs` to replace cookie-based storage with database integration using `MatrixIncDbContext`. Updated UI in `History.cshtml` and `Order.cshtml` to reflect new `Order` properties and terminology changes. Configured SQLite in `Program.cs` and reformatted `appsettings.json` for readability.
+
 commit cf771ba9cee0f560412b5d30dfe227d27208dd9b
 Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
 Date:   Thu Jun 5 12:27:16 2025 +0200
