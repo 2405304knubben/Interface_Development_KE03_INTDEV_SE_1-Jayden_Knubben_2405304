@@ -39,7 +39,6 @@ public class CreateModel : PageModel
         if (exist != null)
         {
             exist.Quantity += amount;
-            //return RedirectToPage();
             
         }
         else

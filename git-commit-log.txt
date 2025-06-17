@@ -1,3 +1,9 @@
+commit fe633853382b13565eb5c188334cf796a44512c8
+Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
+Date:   Fri Jun 13 12:52:09 2025 +0200
+
+    Laatste dingetjes aangepast
+
 commit 6880a0631c5bf78eef877245003b2f818b76dc50
 Author: PrototypeX_3379 <2405304knubben@zuyd.nl>
 Date:   Fri Jun 6 20:40:50 2025 +0200
